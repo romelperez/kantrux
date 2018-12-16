@@ -1,3 +1,3 @@
 # Kantrux
 
-Simple UI library for building static components in JSX.
+Simple web UI library for building static components in JSX.
