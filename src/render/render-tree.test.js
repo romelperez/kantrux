@@ -7,9 +7,9 @@ import { render } from './render';
 
 describe('render() tree', () => {
   test('Should render basic HTMLElements tree', () => {
-    const parentElement = <div name="parent">Hello</div>;
+    const parentNode = <div name="parent">Hello</div>;
     const parentRoot = document.createElement('div');
-    render(parentElement, parentRoot);
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = '<div name="parent">Hello</div>';
@@ -18,7 +18,7 @@ describe('render() tree', () => {
 
   test('Should render nested HTMLElements tree', () => {
     const parentRoot = document.createElement('div');
-    const parentElement = (
+    const parentNode = (
       <header className="heading">
         <h1>Hello</h1>
         <ul name="nav">
@@ -27,7 +27,7 @@ describe('render() tree', () => {
         </ul>
       </header>
     );
-    render(parentElement, parentRoot);
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = [
@@ -45,13 +45,13 @@ describe('render() tree', () => {
   test('Should render functions components', () => {
     const Title = ({ name, children }) => <h1 name={name}>Title: {children}</h1>;
     const parentRoot = document.createElement('div');
-    const parentElement = (
+    const parentNode = (
       <div name="parent">
         <Title name="title">Welcome</Title>
         <p>Content</p>
       </div>
     );
-    render(parentElement, parentRoot);
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = '<div name="parent"><h1 name="title">Title: Welcome</h1><p>Content</p></div>';
@@ -72,13 +72,13 @@ describe('render() tree', () => {
     }
 
     const parentRoot = document.createElement('div');
-    const parentElement = (
+    const parentNode = (
       <div>
         <Header name="header">Welcome</Header>
         <p>Content</p>
       </div>
     );
-    render(parentElement, parentRoot);
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = [
@@ -94,10 +94,32 @@ describe('render() tree', () => {
   });
 
   test('Should not allow multiple direct children on function components', () => {
-    // TODO:
+    const Title = () => [<h1>Hi</h1>, <h2>All</h2>];
+    const parentNode = (
+      <div>
+        <Title />
+        <p>Everyone</p>
+      </div>
+    );
+    const parentRoot = document.createElement('div');
+    const fn = () => render(parentNode, parentRoot);
+    expect(fn).toThrow('Invalid node.');
   });
 
   test('Should not allow multiple direct children on class components', () => {
-    // TODO:
+    class Title extends Component {
+      render() {
+        return [<h1>Hello</h1>, <h2>All</h2>];
+      }
+    }
+    const parentNode = (
+      <div>
+        <Title />
+        <p>Everyone</p>
+      </div>
+    );
+    const parentRoot = document.createElement('div');
+    const fn = () => render(parentNode, parentRoot);
+    expect(fn).toThrow('Invalid node.');
   });
 });

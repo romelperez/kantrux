@@ -7,8 +7,8 @@ import { render } from './render';
 describe('render() DOMElements', () => {
   test('Should render DOMElements with "className" prop as "class"', () => {
     const parentRoot = document.createElement('div');
-    const parentElement = <div className="content">Content</div>;
-    render(parentElement, parentRoot);
+    const parentNode = <div className="content">Content</div>;
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = '<div class="content">Content</div>';
@@ -17,8 +17,8 @@ describe('render() DOMElements', () => {
 
   test('Should render DOMElements with "htmlFor" prop as "for"', () => {
     const parentRoot = document.createElement('div');
-    const parentElement = <div htmlFor="item">Item</div>;
-    render(parentElement, parentRoot);
+    const parentNode = <div htmlFor="item">Item</div>;
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = '<div for="item">Item</div>';
@@ -28,8 +28,8 @@ describe('render() DOMElements', () => {
   test('Should render DOMElements with "style" prop as directly style modifications', () => {
     const styles = { fontSize: '14px', color: 'blue' };
     const parentRoot = document.createElement('div');
-    const parentElement = <div style={styles}>Item</div>;
-    render(parentElement, parentRoot);
+    const parentNode = <div style={styles}>Item</div>;
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = '<div style="font-size: 14px; color: blue;">Item</div>';
@@ -40,8 +40,8 @@ describe('render() DOMElements', () => {
     const onClick = jest.fn();
     const onFocus = jest.fn();
     const parentRoot = document.createElement('div');
-    const parentElement = <button onClick={onClick} onFocus={onFocus}>Item</button>;
-    render(parentElement, parentRoot);
+    const parentNode = <button onClick={onClick} onFocus={onFocus}>Item</button>;
+    render(parentNode, parentRoot);
 
     const button = parentRoot.querySelector('button');
     const clickEvent = new Event('click');
@@ -55,8 +55,8 @@ describe('render() DOMElements', () => {
 
   test('Should only render DOMElements strings/numbers and ignore void values', () => {
     const parentRoot = document.createElement('div');
-    const parentElement = <div>Hello{true} every{undefined}one{null} {10}!</div>;
-    render(parentElement, parentRoot);
+    const parentNode = <div>Hello{true} every{undefined}one{null} {10}!</div>;
+    render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
     const expected = '<div>Hello everyone 10!</div>';
@@ -64,11 +64,25 @@ describe('render() DOMElements', () => {
   });
 
   test('Should render HTML strings as strings', () => {
-    // TODO:
+    const html = '<b>Over<br>Here</b>';
+    const parentNode = <div>Hello {html}!</div>;
+    const parentRoot = document.createElement('div');
+    render(parentNode, parentRoot);
+
+    const received = parentRoot.innerHTML;
+    const expected = '<div>Hello &lt;b&gt;Over&lt;br&gt;Here&lt;/b&gt;!</div>';
+    expect(received).toBe(expected);
   });
 
   test('Should render HTML strings only by prop "html"', () => {
-    // TODO:
+    const html = 'Hello <b>Over<br>Here</b>!';
+    const parentNode = <div html={html} />;
+    const parentRoot = document.createElement('div');
+    render(parentNode, parentRoot);
+
+    const received = parentRoot.innerHTML;
+    const expected = '<div>Hello <b>Over<br>Here</b>!</div>';
+    expect(received).toBe(expected);
   });
 
   test('Should throw error if DOMElements have invalid types', () => {

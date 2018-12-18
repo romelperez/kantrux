@@ -1,103 +1,125 @@
-import { Node } from '../Node';
 import { Component } from '../Component';
+import { Node } from '../Node';
 
-const HTML_ATTRIBUTES = {
+const ATTRIBUTES_MAP = {
   className: 'class',
   htmlFor: 'for'
 };
 
-function isVoid(data) {
+function isValue(data): boolean {
+  return typeof data === 'string' || typeof data === 'number';
+}
+
+function isVoid(data): boolean {
   return data === null || data === void 0 || typeof data === 'boolean';
 }
 
-function isString(data) {
-  return typeof data === 'string';
-}
-
-function isValue(data) {
-  return isString(data) || typeof data === 'number';
-}
-
-function isFn(data) {
-  return typeof data === 'function';
-}
-
-function isNode(data) {
+function isNode(data): boolean {
   return data instanceof Node;
 }
 
-function isComponent(data) {
+function isComponent(data): boolean {
   return data.prototype instanceof Component;
 }
 
-function setHTMLElementStyle(htmlElement, style = {}) {
-  Object.keys(style).forEach(name => {
-    const value = style[name];
-    htmlElement.style[name] = value;
-  });
+function isNameEvent(name: string): boolean {
+  return (/^on[A-Z][A-Za-z]+$/).test(name);
 }
 
-function setHTMLElementAttributes(htmlElement, attributes) {
+function toHTMLElementEventName(name: string): string {
+  return name.replace(/^on/, '').toLowerCase();
+}
+
+function setupHTMLElement(element: string, attributes: Object, children: Array) {
+  const htmlElement = document.createElement(element);
+
   Object.keys(attributes).forEach(key => {
-    const name = HTML_ATTRIBUTES[key] || key;
+    const name = ATTRIBUTES_MAP[key] || key;
     const value = attributes[key];
-    htmlElement.setAttribute(name, value);
+
+    if (name === 'style') {
+      Object.keys(value).forEach(styleKey => {
+        const styleValue = value[styleKey];
+        htmlElement.style[styleKey] = styleValue;
+      });
+    }
+    else if (name === 'html') {
+      htmlElement.innerHTML = value;
+    }
+    else if (isNameEvent(name)) {
+      const eventName = toHTMLElementEventName(name);
+      htmlElement.addEventListener(eventName, value);
+    }
+    else {
+      htmlElement.setAttribute(name, value);
+    }
   });
+
+  children.forEach(child => {
+    let childChunk;
+
+    if (isNode(child)) {
+      childChunk = walk(child);
+    }
+    else if(isValue(child)) {
+      childChunk = document.createTextNode(child);
+    }
+    else if (isVoid(child)) {
+      return;
+    }
+    else {
+      throw new Error('Invalid children.');
+    }
+
+    htmlElement.appendChild(childChunk);
+  });
+
+  return htmlElement;
 }
 
-function walk(node) {
-  const { ref, style, ...htmlAttributes } = node.attributes;
+function walk(node: Node) {
+  if (!isNode(node)) {
+    throw new Error('Invalid node.');
+  }
+
+  const { ref, ...attributes } = node.attributes;
+  const isHTMLElement = typeof node.element === 'string';
+  const isComposedElement = typeof node.element === 'function';
 
   let chunk;
 
-  if (isString(node.element)) {
-    chunk = document.createElement(node.element);
-
-    setHTMLElementStyle(chunk, style);
-    setHTMLElementAttributes(chunk, htmlAttributes);
-
-    node.children.forEach(child => {
-      let childChunk;
-
-      if (isNode(child)) {
-        childChunk = walk(child);
-      } else if(isValue(child)) {
-        childChunk = document.createTextNode(child);
-      } else if (isVoid(child)) {
-        return;
-      } else {
-        throw new Error('Invalid children.');
-      }
-
-      chunk.appendChild(childChunk);
-    });
-
-    if (ref) {
-      ref(chunk);
-    }
-  } else if (isFn(node.element)) {
+  if (isHTMLElement) {
+    chunk = setupHTMLElement(node.element, attributes, node.children);
+    ref && ref(chunk);
+  }
+  else if (isComposedElement) {
+    // If children is only one element, we pass it directly to simplify data manipulation.
     const children = node.children.length === 1 ? node.children[0] : node.children;
+
     const props = { ...node.attributes, children };
 
-    let instance;
-    let executed;
+    let nextNode;
+    let toReference;
 
     if (isComponent(node.element)) {
-      instance = new node.element(props);
-      executed = instance.render();
+      const instance = new node.element(props);
+      nextNode = instance.render();
+      toReference = instance;
     } else {
-      executed = node.element(props);
+      nextNode = node.element(props);
     }
 
-    chunk = walk(executed);
-  } else {
+    chunk = walk(nextNode);
+    ref && ref(toReference || chunk);
+  }
+  else {
     throw new Error('Invalid element.');
   }
 
   return chunk;
 }
 
-export function render(parentNode, parentRoot) {
+export function render(parentNode: Node, parentRoot: HTMLElement) {
   const dom = walk(parentNode);
   parentRoot.appendChild(dom);
 }

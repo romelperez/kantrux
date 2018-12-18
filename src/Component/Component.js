@@ -1,3 +1,3 @@
-export function Component(props = {}) {
+export function Component(props: Object = {}) {
   this.props = props;
 }
