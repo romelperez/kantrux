@@ -11,7 +11,7 @@ describe('render() tree', () => {
     const parentRoot = document.createElement('div');
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
+    const received = parentRoot.innerHTML;
     const expected = '<div name="parent">Hello</div>';
     expect(received).toBe(expected);
   });
@@ -29,7 +29,7 @@ describe('render() tree', () => {
     );
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
+    const received = parentRoot.innerHTML;
     const expected = [
       '<header class="heading">',
       '<h1>Hello</h1>',
@@ -53,7 +53,7 @@ describe('render() tree', () => {
     );
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
+    const received = parentRoot.innerHTML;
     const expected = '<div name="parent"><h1 name="title">Title: Welcome</h1><p>Content</p></div>';
     expect(received).toBe(expected);
   });
@@ -80,15 +80,24 @@ describe('render() tree', () => {
     );
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
+    const received = parentRoot.innerHTML;
     const expected = [
       '<div>',
       '<header name="header">',
       '<h1 class="title">Welcome</h1>',
       '<h2>Best heading ever!</h2>',
       '</header>',
+      '<p>Content</p>',
       '</div>'
     ].join('');
     expect(received).toBe(expected);
+  });
+
+  test('Should not allow multiple direct children on function components', () => {
+    // TODO:
+  });
+
+  test('Should not allow multiple direct children on class components', () => {
+    // TODO:
   });
 });

@@ -10,7 +10,7 @@ describe('render() DOMElements', () => {
     const parentElement = <div className="content">Content</div>;
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
+    const received = parentRoot.innerHTML;
     const expected = '<div class="content">Content</div>';
     expect(received).toBe(expected);
   });
@@ -20,7 +20,7 @@ describe('render() DOMElements', () => {
     const parentElement = <div htmlFor="item">Item</div>;
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
+    const received = parentRoot.innerHTML;
     const expected = '<div for="item">Item</div>';
     expect(received).toBe(expected);
   });
@@ -31,8 +31,8 @@ describe('render() DOMElements', () => {
     const parentElement = <div style={styles}>Item</div>;
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
-    const expected = '<div style="font-size: 14px;color: blue;">Item</div>';
+    const received = parentRoot.innerHTML;
+    const expected = '<div style="font-size: 14px; color: blue;">Item</div>';
     expect(received).toBe(expected);
   });
 
@@ -58,15 +58,24 @@ describe('render() DOMElements', () => {
     const parentElement = <div>Hello{true} every{undefined}one{null} {10}!</div>;
     render(parentElement, parentRoot);
 
-    const received = parentRoot.outerHTML;
+    const received = parentRoot.innerHTML;
     const expected = '<div>Hello everyone 10!</div>';
     expect(received).toBe(expected);
   });
 
+  test('Should render HTML strings as strings', () => {
+    // TODO:
+  });
+
+  test('Should render HTML strings only by prop "html"', () => {
+    // TODO:
+  });
+
   test('Should throw error if DOMElements have invalid types', () => {
     const parentRoot = document.createElement('div');
-    const parentElement = <div>Hello{{}} everyone{/a/}!</div>;
-    const fn = () => render(parentElement, parentRoot);
-    expect(fn).toThrow('Invalid children.');
+    const fn1 = () => render(<div>Hello{{}}!</div>, parentRoot);
+    const fn2 = () => render(<div>Hello{/a/}!</div>, parentRoot);
+    expect(fn1).toThrow('Invalid children.');
+    expect(fn2).toThrow('Invalid children.');
   });
 });

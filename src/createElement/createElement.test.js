@@ -48,7 +48,7 @@ describe('createElement()', () => {
     );
 
     expect(tree.element).toBe('header');
-    expect(tree.attributes).toBeNull();
+    expect(tree.attributes).toEqual({});
 
     expect(tree.children[0].element).toBe('h1');
     expect(tree.children[0].attributes).toEqual({ name: 'title' });
@@ -63,7 +63,7 @@ describe('createElement()', () => {
     expect(tree.children[1].children[2]).toBe(' ');
 
     expect(tree.children[1].children[3].element).toBe('b');
-    expect(tree.children[1].children[3].attributes).toBeNull();
+    expect(tree.children[1].children[3].attributes).toEqual({});
     expect(tree.children[1].children[3].children[0]).toBe('fun ');
     expect(tree.children[1].children[3].children[1]).toBe(withNum);
 
