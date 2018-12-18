@@ -63,8 +63,9 @@ render(node, root);
 
 ## Why?
 
-In you don't need to worry about reactivity or stateful components, you can
-use this library to build lightweight and simple components.
+If you don't need to worry about reactivity, contextful or stateful components,
+lifecycle hooks, or asynchronous patterns, you can use this library to build
+lightweight and simple components.
 
-This is like [Preact](https://preactjs.com) but with simple support for
-components with support for JSX.
+This is like [Preact](https://preactjs.com) but with simple support for components,
+where you can use [JSX](https://facebook.github.io/jsx/).
