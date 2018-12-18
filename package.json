@@ -1,6 +1,6 @@
 {
   "name": "kantrux",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.3",
   "description": "Simple web UI library for building static components in JSX",
   "main": "index.js",
   "scripts": {
