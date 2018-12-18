@@ -2,20 +2,17 @@
   "name": "kantrux",
   "version": "1.0.0-alpha.1",
   "description": "Simple web UI library for building static components in JSX",
-  "main": "lib/index.js",
-  "files": [
-    "src",
-    "lib"
-  ],
+  "main": "index.js",
   "scripts": {
     "lint": "eslint ./src",
     "format": "prettier --write \"./src/**/*.js\"",
     "test": "jest",
     "test-dev": "jest --watch",
     "precommit": "npm test",
-    "compile": "babel ./src --out-dir ./lib --ignore '*.test.js'",
+    "compile": "rimraf ./dist && babel ./src --out-dir ./dist --ignore \"./src/**/*.test.js\"",
+    "compile-copyfiles": "cp package.json dist/package.json && cp README.md dist/README.md",
     "changelog": "auto-changelog --output CHANGELOG.md --commit-limit false",
-    "release": "npm test && npm run compile && npm publish"
+    "release": "npm test && npm run compile && npm run compile-copyfiles && npm publish dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -35,6 +32,7 @@
     "jest": "^23.6.0",
     "jest-extended": "^0.11.0",
     "prettier": "^1.15.3",
-    "prettier-eslint": "^8.8.2"
+    "prettier-eslint": "^8.8.2",
+    "rimraf": "^2.6.2"
   }
 }
