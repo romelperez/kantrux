@@ -1,0 +1,8 @@
+script: npm run test
+language: node_js
+node_js:
+  - "10.14"
+  - "11.5"
+addons:
+  chrome: stable
+sudo: required
