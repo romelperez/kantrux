@@ -1,10 +1,10 @@
 /* eslint-env jest */
-/** @jsx createElement */
+/** @jsx createNode */
 
 import { Node } from '../Node';
-import { createElement } from './createElement';
+import { createNode } from './createNode';
 
-describe('createElement()', () => {
+describe('createNode()', () => {
   test('Should create node tree with provided data structure', () => {
     const withStr = 'over here';
     const withNum = 100;

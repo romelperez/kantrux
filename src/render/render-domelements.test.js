@@ -1,7 +1,7 @@
 /* eslint-env jest */
-/** @jsx createElement */
+/** @jsx createNode */
 
-import { createElement } from '../createElement';
+import { createNode } from '../createNode';
 import { render } from './render';
 
 describe('render() DOMElements', () => {

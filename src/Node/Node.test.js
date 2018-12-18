@@ -1,5 +1,4 @@
 /* eslint-env jest */
-/** @jsx createElement */
 
 import { Node } from './Node';
 

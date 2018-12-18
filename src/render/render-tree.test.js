@@ -1,8 +1,8 @@
 /* eslint-env jest */
-/** @jsx createElement */
+/** @jsx createNode */
 
 import { Component } from '../Component';
-import { createElement } from '../createElement';
+import { createNode } from '../createNode';
 import { render } from './render';
 
 describe('render() tree', () => {

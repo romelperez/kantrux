@@ -1,5 +1,5 @@
 /* eslint-env jest */
-/** @jsx createElement */
+/** @jsx createNode */
 
 describe('render() refs', () => {
   test('Should get reference to HTMLElement', () => {
