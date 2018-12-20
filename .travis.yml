@@ -1,4 +1,4 @@
-script: npm run test
+script: npm run test-ci
 language: node_js
 node_js:
   - "10.14"
