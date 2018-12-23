@@ -40,7 +40,11 @@ describe('render() DOMElements', () => {
     const onClick = jest.fn();
     const onFocus = jest.fn();
     const parentRoot = document.createElement('div');
-    const parentNode = <button onClick={onClick} onFocus={onFocus}>Item</button>;
+    const parentNode = (
+      <button onClick={onClick} onFocus={onFocus}>
+        Item
+      </button>
+    );
     render(parentNode, parentRoot);
 
     const button = parentRoot.querySelector('button');
@@ -55,7 +59,11 @@ describe('render() DOMElements', () => {
 
   test('Should only render DOMElements strings/numbers and ignore void values', () => {
     const parentRoot = document.createElement('div');
-    const parentNode = <div>Hello{true} every{undefined}one{null} {10}!</div>;
+    const parentNode = (
+      <div>
+        Hello{true} every{undefined}one{null} {10}!
+      </div>
+    );
     render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;

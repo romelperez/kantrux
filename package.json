@@ -1,6 +1,6 @@
 {
   "name": "kantrux",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "Ultralight web UI library for building static components with JSX support",
   "keywords": [
     "ui",
@@ -40,6 +40,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.10.0",
     "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-flowtype": "^3.2.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.2.1",

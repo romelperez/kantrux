@@ -22,8 +22,12 @@ describe('render() tree', () => {
       <header className="heading">
         <h1>Hello</h1>
         <ul name="nav">
-          <li><a href="/">home</a></li>
-          <li><a href="/about">about</a></li>
+          <li>
+            <a href="/">home</a>
+          </li>
+          <li>
+            <a href="/about">about</a>
+          </li>
         </ul>
       </header>
     );
@@ -43,7 +47,9 @@ describe('render() tree', () => {
   });
 
   test('Should render functions components', () => {
-    const Title = ({ name, children }) => <h1 name={name}>Title: {children}</h1>;
+    const Title = ({ name, children }) => (
+      <h1 name={name}>Title: {children}</h1>
+    );
     const parentRoot = document.createElement('div');
     const parentNode = (
       <div name="parent">
@@ -54,7 +60,8 @@ describe('render() tree', () => {
     render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
-    const expected = '<div name="parent"><h1 name="title">Title: Welcome</h1><p>Content</p></div>';
+    const expected =
+      '<div name="parent"><h1 name="title">Title: Welcome</h1><p>Content</p></div>';
     expect(received).toBe(expected);
   });
 

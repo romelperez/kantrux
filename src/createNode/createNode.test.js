@@ -11,7 +11,9 @@ describe('createNode()', () => {
     const tree = (
       <header>
         <h1 name="title">Hello!</h1>
-        <div name="description">Awesome {withStr} <b>fun {withNum}</b>!</div>
+        <div name="description">
+          Awesome {withStr} <b>fun {withNum}</b>!
+        </div>
       </header>
     );
 
@@ -43,7 +45,9 @@ describe('createNode()', () => {
     const tree = (
       <header>
         <h1 name="title">Hello!</h1>
-        <div name="description">Awesome {withStr} <b>fun {withNum}</b>!</div>
+        <div name="description">
+          Awesome {withStr} <b>fun {withNum}</b>!
+        </div>
       </header>
     );
 

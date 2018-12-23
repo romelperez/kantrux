@@ -1,7 +1,8 @@
 {
   "extends": [
-    "eslint:recommended",
-    "prettier"
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
   ],
 
   "parser": "babel-eslint",
@@ -18,13 +19,7 @@
 
   "plugins": [
     "prettier",
+    "flowtype",
     "react"
-  ],
-
-  "rules": {
-    "quotes": ["error", "single"],
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
-  }
+  ]
 }

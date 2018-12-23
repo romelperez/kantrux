@@ -23,14 +23,18 @@ function isComponent(data): boolean {
 }
 
 function isNameEvent(name: string): boolean {
-  return (/^on[A-Z][A-Za-z]+$/).test(name);
+  return /^on[A-Z][A-Za-z]+$/.test(name);
 }
 
 function toHTMLElementEventName(name: string): string {
   return name.replace(/^on/, '').toLowerCase();
 }
 
-function setupHTMLElement(element: string, attributes: Object, children: Array) {
+function setupHTMLElement(
+  element: string,
+  attributes: Object,
+  children: Array
+) {
   const htmlElement = document.createElement(element);
 
   Object.keys(attributes).forEach(key => {
@@ -42,15 +46,12 @@ function setupHTMLElement(element: string, attributes: Object, children: Array) 
         const styleValue = value[styleKey];
         htmlElement.style[styleKey] = styleValue;
       });
-    }
-    else if (name === 'html') {
+    } else if (name === 'html') {
       htmlElement.innerHTML = value;
-    }
-    else if (isNameEvent(name)) {
+    } else if (isNameEvent(name)) {
       const eventName = toHTMLElementEventName(name);
       htmlElement.addEventListener(eventName, value);
-    }
-    else {
+    } else {
       htmlElement.setAttribute(name, value);
     }
   });
@@ -60,14 +61,11 @@ function setupHTMLElement(element: string, attributes: Object, children: Array) 
 
     if (isNode(child)) {
       childChunk = walk(child);
-    }
-    else if(isValue(child)) {
+    } else if (isValue(child)) {
       childChunk = document.createTextNode(child);
-    }
-    else if (isVoid(child)) {
+    } else if (isVoid(child)) {
       return;
-    }
-    else {
+    } else {
       throw new Error('Invalid children.');
     }
 
@@ -91,10 +89,10 @@ function walk(node: Node) {
   if (isHTMLElement) {
     chunk = setupHTMLElement(node.element, attributes, node.children);
     ref && ref(chunk);
-  }
-  else if (isComposedElement) {
+  } else if (isComposedElement) {
     // If children is only one element, we pass it directly to simplify data manipulation.
-    const children = node.children.length === 1 ? node.children[0] : node.children;
+    const children =
+      node.children.length === 1 ? node.children[0] : node.children;
 
     const props = { ...node.attributes, children };
 
@@ -111,8 +109,7 @@ function walk(node: Node) {
 
     chunk = walk(nextNode);
     ref && ref(toReference || chunk);
-  }
-  else {
+  } else {
     throw new Error('Invalid element.');
   }
 
