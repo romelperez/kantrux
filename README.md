@@ -123,10 +123,10 @@ This is like [Preact](https://preactjs.com) but with simple support for componen
 - Custom HTML attributes as props:
     - `class` as `className`
     - `for` as `htmlFor`
-- `ref` prop support
+- `ref` prop function support
 - `style` prop as object support
 - To render HTML string children, use `html` prop
-- Asynchronous rendering
+- Synchronous rendering
 - No `state` support
 - No `context` support
 - No hooks
