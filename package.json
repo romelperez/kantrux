@@ -1,6 +1,6 @@
 {
   "name": "kantrux",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "Ultralight web UI library for building static components with JSX support",
   "keywords": [
     "ui",
