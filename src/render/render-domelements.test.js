@@ -36,6 +36,17 @@ describe('render() DOMElements', () => {
     expect(received).toBe(expected);
   });
 
+  test('Should ignore DOMElements with "style" prop as falsy', () => {
+    const styles = null;
+    const parentRoot = document.createElement('div');
+    const parentNode = <div style={styles}>Item</div>;
+    render(parentNode, parentRoot);
+
+    const received = parentRoot.innerHTML;
+    const expected = '<div>Item</div>';
+    expect(received).toBe(expected);
+  });
+
   test('Should render DOMElements with provided events, props matching "/^on[A-Z][A-Za-z]+/"', () => {
     const onClick = jest.fn();
     const onFocus = jest.fn();

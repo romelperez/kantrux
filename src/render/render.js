@@ -30,43 +30,62 @@ function toHTMLElementEventName (name) {
   return name.replace(/^on/, '').toLowerCase();
 }
 
-function setupHTMLElement (element, attributes, children) {
-  const htmlElement = document.createElement(element);
-
+function setupHTMLElementAttributes (htmlElement, attributes) {
   Object.keys(attributes).forEach(key => {
     const name = ATTRIBUTES_MAP[key] || key;
     const value = attributes[key];
 
     if (name === 'style') {
+      if (!value) return;
+
       Object.keys(value).forEach(styleKey => {
         const styleValue = value[styleKey];
         htmlElement.style[styleKey] = styleValue;
       });
-    } else if (name === 'html') {
+    }
+    else if (name === 'html') {
       htmlElement.innerHTML = value;
-    } else if (isNameEvent(name)) {
+    }
+    else if (isNameEvent(name)) {
       const eventName = toHTMLElementEventName(name);
       htmlElement.addEventListener(eventName, value);
-    } else {
+    }
+    else {
       htmlElement.setAttribute(name, value);
     }
   });
+}
 
+function setupHTMLElementChildren (htmlElement, children) {
   children.forEach(child => {
     let childChunk;
 
     if (isNode(child)) {
       childChunk = walk(child);
-    } else if (isValue(child)) {
+    }
+    else if (isValue(child)) {
       childChunk = document.createTextNode(child);
-    } else if (isVoid(child)) {
+    }
+    else if (isVoid(child)) {
       return;
-    } else {
+    }
+    else if (Array.isArray(child)) {
+      setupHTMLElementChildren(htmlElement, child);
+      return;
+    }
+    else {
       throw new Error('Invalid children.');
     }
 
     htmlElement.appendChild(childChunk);
   });
+}
+
+function setupHTMLElement (element, attributes, children) {
+  const htmlElement = document.createElement(element);
+
+  setupHTMLElementAttributes(htmlElement, attributes);
+  setupHTMLElementChildren(htmlElement, children);
 
   return htmlElement;
 }
@@ -85,10 +104,10 @@ function walk (node) {
   if (isHTMLElement) {
     chunk = setupHTMLElement(node.element, attributes, node.children);
     ref && ref(chunk);
-  } else if (isComposedElement) {
+  }
+  else if (isComposedElement) {
     // If children is only one element, we pass it directly to simplify data manipulation.
-    const children =
-      node.children.length === 1 ? node.children[0] : node.children;
+    const children = node.children.length === 1 ? node.children[0] : node.children;
 
     const props = { ...node.attributes, children };
 
@@ -99,13 +118,15 @@ function walk (node) {
       const instance = new node.element(props); // eslint-disable-line new-cap
       nextNode = instance.render();
       toReference = instance;
-    } else {
+    }
+    else {
       nextNode = node.element(props);
     }
 
     chunk = walk(nextNode);
     ref && ref(toReference || chunk);
-  } else {
+  }
+  else {
     throw new Error('Invalid element.');
   }
 

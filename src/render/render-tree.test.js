@@ -46,6 +46,32 @@ describe('render() tree', () => {
     expect(received).toBe(expected);
   });
 
+  test('Should render arrays in HTMLElements tree', () => {
+    const parentRoot = document.createElement('div');
+    const parentNode = (
+      <header className='heading'>
+        <h1>Hello</h1>
+        {[
+          'Hi',
+          <i>Everyone</i>,
+          <u>Here</u>
+        ]}
+      </header>
+    );
+    render(parentNode, parentRoot);
+
+    const received = parentRoot.innerHTML;
+    const expected = [
+      '<header class="heading">',
+      '<h1>Hello</h1>',
+      'Hi',
+      '<i>Everyone</i>',
+      '<u>Here</u>',
+      '</header>'
+    ].join('');
+    expect(received).toBe(expected);
+  });
+
   test('Should render functions components', () => {
     const Title = ({ name, children }) => ( // eslint-disable-line react/prop-types
       <h1 name={name}>Title: {children}</h1>
