@@ -7,7 +7,7 @@ import { render } from './render';
 
 describe('render() tree', () => {
   test('Should render basic HTMLElements tree', () => {
-    const parentNode = <div name="parent">Hello</div>;
+    const parentNode = <div name='parent'>Hello</div>;
     const parentRoot = document.createElement('div');
     render(parentNode, parentRoot);
 
@@ -19,14 +19,14 @@ describe('render() tree', () => {
   test('Should render nested HTMLElements tree', () => {
     const parentRoot = document.createElement('div');
     const parentNode = (
-      <header className="heading">
+      <header className='heading'>
         <h1>Hello</h1>
-        <ul name="nav">
+        <ul name='nav'>
           <li>
-            <a href="/">home</a>
+            <a href='/'>home</a>
           </li>
           <li>
-            <a href="/about">about</a>
+            <a href='/about'>about</a>
           </li>
         </ul>
       </header>
@@ -47,13 +47,13 @@ describe('render() tree', () => {
   });
 
   test('Should render functions components', () => {
-    const Title = ({ name, children }) => (
+    const Title = ({ name, children }) => ( // eslint-disable-line react/prop-types
       <h1 name={name}>Title: {children}</h1>
     );
     const parentRoot = document.createElement('div');
     const parentNode = (
-      <div name="parent">
-        <Title name="title">Welcome</Title>
+      <div name='parent'>
+        <Title name='title'>Welcome</Title>
         <p>Content</p>
       </div>
     );
@@ -67,11 +67,11 @@ describe('render() tree', () => {
 
   test('Should render class components', () => {
     class Header extends Component {
-      render() {
-        const { name, children } = this.props;
+      render () {
+        const { name, children } = this.props; // eslint-disable-line react/prop-types
         return (
           <header name={name}>
-            <h1 className="title">{children}</h1>
+            <h1 className='title'>{children}</h1>
             <h2>Best heading ever!</h2>
           </header>
         );
@@ -81,7 +81,7 @@ describe('render() tree', () => {
     const parentRoot = document.createElement('div');
     const parentNode = (
       <div>
-        <Header name="header">Welcome</Header>
+        <Header name='header'>Welcome</Header>
         <p>Content</p>
       </div>
     );
@@ -115,7 +115,7 @@ describe('render() tree', () => {
 
   test('Should not allow multiple direct children on class components', () => {
     class Title extends Component {
-      render() {
+      render () {
         return [<h1>Hello</h1>, <h2>All</h2>];
       }
     }

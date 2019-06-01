@@ -7,7 +7,7 @@ import { render } from './render';
 describe('render() DOMElements', () => {
   test('Should render DOMElements with "className" prop as "class"', () => {
     const parentRoot = document.createElement('div');
-    const parentNode = <div className="content">Content</div>;
+    const parentNode = <div className='content'>Content</div>;
     render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;
@@ -17,7 +17,7 @@ describe('render() DOMElements', () => {
 
   test('Should render DOMElements with "htmlFor" prop as "for"', () => {
     const parentRoot = document.createElement('div');
-    const parentNode = <div htmlFor="item">Item</div>;
+    const parentNode = <div htmlFor='item'>Item</div>;
     render(parentNode, parentRoot);
 
     const received = parentRoot.innerHTML;

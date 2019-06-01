@@ -6,35 +6,31 @@ const ATTRIBUTES_MAP = {
   htmlFor: 'for'
 };
 
-function isValue(data): boolean {
+function isValue (data) {
   return typeof data === 'string' || typeof data === 'number';
 }
 
-function isVoid(data): boolean {
+function isVoid (data) {
   return data === null || data === void 0 || typeof data === 'boolean';
 }
 
-function isNode(data): boolean {
+function isNode (data) {
   return data instanceof Node;
 }
 
-function isComponent(data): boolean {
+function isComponent (data) {
   return data.prototype instanceof Component;
 }
 
-function isNameEvent(name: string): boolean {
+function isNameEvent (name) {
   return /^on[A-Z][A-Za-z]+$/.test(name);
 }
 
-function toHTMLElementEventName(name: string): string {
+function toHTMLElementEventName (name) {
   return name.replace(/^on/, '').toLowerCase();
 }
 
-function setupHTMLElement(
-  element: string,
-  attributes: Object,
-  children: Array
-) {
+function setupHTMLElement (element, attributes, children) {
   const htmlElement = document.createElement(element);
 
   Object.keys(attributes).forEach(key => {
@@ -75,7 +71,7 @@ function setupHTMLElement(
   return htmlElement;
 }
 
-function walk(node: Node) {
+function walk (node) {
   if (!isNode(node)) {
     throw new Error('Invalid node.');
   }
@@ -100,7 +96,7 @@ function walk(node: Node) {
     let toReference;
 
     if (isComponent(node.element)) {
-      const instance = new node.element(props);
+      const instance = new node.element(props); // eslint-disable-line new-cap
       nextNode = instance.render();
       toReference = instance;
     } else {
@@ -116,7 +112,7 @@ function walk(node: Node) {
   return chunk;
 }
 
-export function render(parentNode: Node, parentRoot: HTMLElement) {
+export function render (parentNode, parentRoot) {
   const dom = walk(parentNode);
   parentRoot.appendChild(dom);
 }

@@ -33,8 +33,8 @@ describe('render() refs', () => {
     let componentReference;
     const ref = providedReference => (componentReference = providedReference);
     class Title extends Component {
-      render() {
-        const { children } = this.props;
+      render () {
+        const { children } = this.props; // eslint-disable-line react/prop-types
         return <h1>{children}</h1>;
       }
     }

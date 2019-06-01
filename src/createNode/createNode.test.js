@@ -10,8 +10,8 @@ describe('createNode()', () => {
     const withNum = 100;
     const tree = (
       <header>
-        <h1 name="title">Hello!</h1>
-        <div name="description">
+        <h1 name='title'>Hello!</h1>
+        <div name='description'>
           Awesome {withStr} <b>fun {withNum}</b>!
         </div>
       </header>
@@ -44,8 +44,8 @@ describe('createNode()', () => {
     const withNum = 100;
     const tree = (
       <header>
-        <h1 name="title">Hello!</h1>
-        <div name="description">
+        <h1 name='title'>Hello!</h1>
+        <div name='description'>
           Awesome {withStr} <b>fun {withNum}</b>!
         </div>
       </header>
