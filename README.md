@@ -10,17 +10,20 @@ Ultralight web UI library for building static components with [JSX](https://face
 <a href="https://travis-ci.org/romelperez/kantrux">
   <img src="https://img.shields.io/travis/romelperez/kantrux.svg" alt="travis" />
 </a>
-<a href="https://github.com/romelperez/kantrux/blob/master/LICENSE">
-  <img src="https://img.shields.io/github/license/romelperez/kantrux.svg?maxAge=2592000" alt="license" />
-</a>
-<a href="https://github.com/prettier/prettier">
-  <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" alt="code style: prettier">
+<a href="https://npmjs.org/package/kantrux">
+  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/kantrux.svg">
 </a>
 <a href="https://npmjs.org/package/kantrux">
   <img src="https://img.shields.io/npm/dm/kantrux.svg" alt="downloads" />
 </a>
 <a href="https://github.com/romelperez/kantrux">
   <img src="https://img.shields.io/github/stars/romelperez/kantrux.svg?style=social&label=stars" alt="github stars" />
+</a>
+<a href="https://github.com/romelperez/kantrux/blob/master/LICENSE">
+  <img src="https://img.shields.io/github/license/romelperez/kantrux.svg?maxAge=2592000" alt="license" />
+</a>
+<a href="https://standardjs.com">
+  <img src="https://img.shields.io/badge/code_style-standardjs-d2bb09.svg?style=flat-square" alt="code style: standardjs">
 </a>
 
 ## Install
@@ -43,7 +46,7 @@ const Title = ({ className, children }) => (
 );
 
 class Content extends Component {
-  render() {
+  render () {
     const { className, children } = this.props;
     return <p className={className}>{children}</p>;
   }
@@ -76,7 +79,7 @@ const Title = ({ className, children }) => (
 );
 
 class Content extends Component {
-  render() {
+  render () {
     const { className, children } = this.props;
     return createNode('p', { className }, children);
   }
@@ -130,6 +133,7 @@ This is like [Preact](https://preactjs.com) but with simple support for componen
 - No `propTypes` nor `defaultProps`
 - No `state` support
 - No `context` support
+- No lists `key` support
 - No hooks
 - No support for SVG
 
