@@ -109,6 +109,7 @@ lightweight and simple components.
 
 This is like [Preact](https://preactjs.com) but with simple support for components.
 
+- Synchronous rendering
 - `HTMLElement` components as string nodes
 - Function components
     - Accepts props as argument
@@ -126,8 +127,19 @@ This is like [Preact](https://preactjs.com) but with simple support for componen
 - `ref` prop function support
 - `style` prop as object support
 - To render HTML string children, use `html` prop
-- Synchronous rendering
+- No `propTypes` nor `defaultProps`
 - No `state` support
 - No `context` support
 - No hooks
 - No support for SVG
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table><tr><td align="center"><a href="https://RomelPerez.com"><img src="https://avatars2.githubusercontent.com/u/1393135?v=4" width="100px;" alt="Romel Pérez"/><br /><sub><b>Romel Pérez</b></sub></a><br /><a href="#projectManagement-romelperez" title="Project Management">📆</a> <a href="https://github.com/romelperez/kantrux/commits?author=romelperez" title="Code">💻</a> <a href="https://github.com/romelperez/kantrux/commits?author=romelperez" title="Documentation">📖</a> <a href="#question-romelperez" title="Answering Questions">💬</a></td></tr></table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors)
+specification.

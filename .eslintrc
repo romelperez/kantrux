@@ -1,8 +1,7 @@
 {
   "extends": [
-    "prettier",
-    "prettier/flowtype",
-    "prettier/react"
+    "standard",
+    "standard-react"
   ],
 
   "parser": "babel-eslint",
@@ -17,9 +16,7 @@
     "browser": true
   },
 
-  "plugins": [
-    "prettier",
-    "flowtype",
-    "react"
-  ]
+  "rules": {
+    "semi": ["error", "always"]
+  }
 }

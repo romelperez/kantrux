@@ -1,0 +1,27 @@
+{
+  "projectName": "kantrux",
+  "projectOwner": "romelperez",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "romelperez",
+      "name": "Romel Pérez",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1393135?v=4",
+      "profile": "https://RomelPerez.com",
+      "contributions": [
+        "projectManagement",
+        "code",
+        "doc",
+        "question"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
