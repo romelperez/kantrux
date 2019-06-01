@@ -30,6 +30,11 @@
     "contributors-add": "all-contributors add",
     "contributors-generate": "all-contributors generate"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test-ci"
+    }
+  },
   "dependencies": {
     "@babel/runtime": "^7.4.5"
   },
