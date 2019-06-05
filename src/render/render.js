@@ -43,8 +43,10 @@ function setupHTMLElementAttributes (htmlElement, attributes) {
         htmlElement.style[styleKey] = styleValue;
       });
     }
-    else if (name === 'html') {
-      htmlElement.innerHTML = value;
+    else if (name === 'dangerouslySetInnerHTML') {
+      if (value && value.__html) {
+        htmlElement.innerHTML = value.__html;
+      }
     }
     else if (isNameEvent(name)) {
       const eventName = toHTMLElementEventName(name);

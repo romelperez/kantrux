@@ -129,7 +129,8 @@ This is like [Preact](https://preactjs.com) but with simple support for componen
     - `for` as `htmlFor`
 - `ref` prop function support
 - `style` prop as object support
-- To render HTML string children, use `html` prop
+- `dangerouslySetInnerHTML: { __html }` support
+- No special treatment for forms
 - No `propTypes` nor `defaultProps`
 - No `state` support
 - No `context` support

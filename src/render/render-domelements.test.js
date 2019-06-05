@@ -93,9 +93,9 @@ describe('render() DOMElements', () => {
     expect(received).toBe(expected);
   });
 
-  test('Should render HTML strings only by prop "html"', () => {
-    const html = 'Hello <b>Over<br>Here</b>!';
-    const parentNode = <div html={html} />;
+  test('Should render HTML strings only by prop "dangerouslySetInnerHTML: { __html }"', () => {
+    const __html = 'Hello <b>Over<br>Here</b>!';
+    const parentNode = <div dangerouslySetInnerHTML={{ __html }} />;
     const parentRoot = document.createElement('div');
     render(parentNode, parentRoot);
 
