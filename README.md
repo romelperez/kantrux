@@ -1,4 +1,4 @@
-<img src="kantrux.png" height="150" alt="Kantrux's logo">
+<img src="kantrux.jpg" height="200" alt="Kantrux">
 
 # Kantrux
 
@@ -53,9 +53,9 @@ class Content extends Component {
 }
 
 const node = (
-  <div className="app">
-    <Title className="title">Kantrux</Title>
-    <Content className="content">Simple web UI library in JSX!</Content>
+  <div className='app'>
+    <Title className='title'>Kantrux</Title>
+    <Content className='content'>Simple web UI library in JSX!</Content>
   </div>
 );
 const root = document.querySelector('#root');
@@ -148,3 +148,13 @@ This is like [Preact](https://preactjs.com) but with simple support for componen
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors)
 specification.
+
+## About
+
+Kantrux's logo is a photo of a bird named Barranquero endemic from Colombia.
+
+A colorful large bird that has a heavy bill and long tails with a distinctive
+racquet-like tip and known to nest in tunnels in river ban. Solitary or in pairs.
+Feed on fruit and insects on ground.
+
+Source: [birdsofcolombia.com](https://birdsofcolombia.com).
