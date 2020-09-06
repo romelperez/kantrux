@@ -1,21 +1,23 @@
 {
+  "root": true,
+  "ignorePatterns": [
+    "node_modules",
+    "coverage",
+    "dist"
+  ],
   "extends": [
     "standard",
     "standard-react"
   ],
-
   "parser": "babel-eslint",
-
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-
   "env": {
     "es6": true,
     "browser": true
   },
-
   "rules": {
     "semi": ["error", "always"],
     "brace-style": ["error", "stroustrup"]

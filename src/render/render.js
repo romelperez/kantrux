@@ -11,7 +11,7 @@ function isValue (data) {
 }
 
 function isVoid (data) {
-  return data === null || data === void 0 || typeof data === 'boolean';
+  return data === null || data === undefined || typeof data === 'boolean';
 }
 
 function isNode (data) {

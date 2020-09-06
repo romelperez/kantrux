@@ -1,4 +1,5 @@
 /* eslint-env jest */
+/* eslint-disable react/jsx-key */
 /** @jsx createNode */
 
 import { Component } from '../Component';
