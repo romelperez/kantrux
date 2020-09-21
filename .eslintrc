@@ -3,7 +3,9 @@
   "ignorePatterns": [
     "node_modules",
     "coverage",
-    "dist"
+    "lib",
+    "dist",
+    "e2e/*/out.js"
   ],
   "extends": [
     "standard",

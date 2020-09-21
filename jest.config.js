@@ -4,5 +4,5 @@ module.exports = {
   setupFilesAfterEnv: ['jest-extended'],
   rootDir: 'src',
   coverageDirectory: 'coverage',
-  coveragePathIgnorePatterns: ['/node_modules/', '/dist/']
+  coveragePathIgnorePatterns: ['/node_modules/', '/lib/', '/dist/']
 };
