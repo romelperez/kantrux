@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kantrux umd</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/dist/kantrux.js"></script>
+    <script type="module">
+      const { createNode, render, Component } = window.kantrux;
+
+      const Title = ({ className, children }) => createNode('h1', { className }, children);
+
+      class Content extends Component {
+        render() {
+          const { className, children } = this.props;
+          return createNode('p', { className }, children);
+        }
+      }
+
+      const node = createNode(
+        'div',
+        { classname: 'app' },
+        createNode(Title, { className: 'title' }, 'Kantrux'),
+        createNode(Content, { className: 'content' }, 'An example using UMD!')
+      );
+      const root = document.querySelector('#root');
+
+      render(node, root);
+    </script>
+  </body>
+</html>
