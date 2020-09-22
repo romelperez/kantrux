@@ -14,8 +14,16 @@ Ultralight web UI library for building static components with [JSX](https://face
 
 ## Install
 
+### CommonJS
+
 ```bash
 $ npm install kantrux
+```
+
+### UMD
+
+```html
+<script src="https://unpkg.com/kantrux/dist/kantrux.js"></script>
 ```
 
 ## How to use
