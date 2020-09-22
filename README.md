@@ -1,30 +1,16 @@
-<img src="kantrux.jpg" height="200" alt="Kantrux">
+![Kantrux](https://github.com/romelperez/kantrux/raw/main/kantrux.jpg)
 
 # Kantrux
 
 Ultralight web UI library for building static components with [JSX](https://facebook.github.io/jsx/) support.
 
-<a href="https://npmjs.org/package/kantrux">
-  <img src="https://img.shields.io/npm/v/kantrux.svg" alt="version" />
-</a>
-<a href="https://travis-ci.org/romelperez/kantrux">
-  <img src="https://img.shields.io/travis/romelperez/kantrux.svg" alt="travis" />
-</a>
-<a href="https://npmjs.org/package/kantrux">
-  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/kantrux.svg">
-</a>
-<a href="https://npmjs.org/package/kantrux">
-  <img src="https://img.shields.io/npm/dm/kantrux.svg" alt="downloads" />
-</a>
-<a href="https://github.com/romelperez/kantrux">
-  <img src="https://img.shields.io/github/stars/romelperez/kantrux.svg?style=social&label=stars" alt="github stars" />
-</a>
-<a href="https://github.com/romelperez/kantrux/blob/master/LICENSE">
-  <img src="https://img.shields.io/github/license/romelperez/kantrux.svg?maxAge=2592000" alt="license" />
-</a>
-<a href="https://standardjs.com">
-  <img src="https://img.shields.io/badge/code_style-standardjs-d2bb09.svg?style=flat-square" alt="code style: standardjs">
-</a>
+[![version](https://img.shields.io/npm/v/kantrux.svg)](https://npmjs.org/package/kantrux)
+[![travis](https://img.shields.io/travis/romelperez/kantrux.svg)](https://travis-ci.org/romelperez/kantrux)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/kantrux.svg)](https://npmjs.org/package/kantrux)
+[![downloads](https://img.shields.io/npm/dm/kantrux.svg)](https://npmjs.org/package/kantrux)
+[![github stars](https://img.shields.io/github/stars/romelperez/kantrux.svg?style=social&label=stars)](https://github.com/romelperez/kantrux)
+[![license](https://img.shields.io/github/license/romelperez/kantrux.svg?maxAge=2592000)](https://github.com/romelperez/kantrux/blob/main/LICENSE)
+[![code style: standardjs](https://img.shields.io/badge/code_style-standardjs-d2bb09.svg?style=flat-square)](https://standardjs.com)
 
 ## Install
 
