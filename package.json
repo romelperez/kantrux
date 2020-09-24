@@ -1,6 +1,6 @@
 {
   "name": "kantrux",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "description": "Ultralight web UI library for building static components with JSX support",
   "keywords": [
     "front-end",
@@ -14,7 +14,7 @@
   "homepage": "https://github.com/romelperez/kantrux",
   "author": "Romel Perez (romelperez.dev)",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "files": [
     "lib",
     "dist"
